@@ -1,0 +1,4 @@
+# "Loss"
+plt.plot(gd.history['loss'])
+plt.plot(gd.history['val_loss'])
+plt.title('Model Loss')
