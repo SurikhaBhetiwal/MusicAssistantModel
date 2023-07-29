@@ -1,0 +1,9 @@
+print(gd.history.keys())
+#  "Accuracy"
+plt.plot(gd.history['accuracy'])
+plt.plot(gd.history['val_accuracy'])
+plt.title('Model Accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Validation'], loc='upper left')
+plt.show()
