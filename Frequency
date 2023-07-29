@@ -1,0 +1,15 @@
+file_path=["mozart"]
+all_files=glob.glob("D:/Suraksha/Automatic Music Generation/automatic-music-generation-codes/" + 'All Midi Files/'+file_path[0]+'/*.mid',recursive=True)
+notes_array = np.array([read_files(i) for i in tqdm(all_files,position=0,leave=True)])
+notes_array
+freq=dict(map(lambda x: (x,notes_1.count(x)),unique_notes))
+freq
+#get the threshold frequency
+print("\nFrequency Notes")
+for i in range(30,100,20):
+  print(i,":",len(list(filter(lambda x:x[1]>=i,freq.items()))))
+freq_notes=dict(filter(lambda x:x[1]>=50,freq.items()))
+freq_notes
+#create new notes using the frequent notes
+new_notes=[[i for i in j if i in freq_notes] for j in notes_array]
+new_notes
