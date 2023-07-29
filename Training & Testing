@@ -1,0 +1,21 @@
+#store values of input and output
+x=[] ; y=[]
+
+for i in new_notes:
+  for j in range(0,len(i)-timesteps):
+    #input will be the current index + timestep
+    #output will be the next index after timestep
+    inp=i[j:j+timesteps] ; out=i[j+timesteps]
+
+    #append the index value of respective notes 
+    x.append(list(map(lambda x:note2ind[x],inp)))
+    y.append(note2ind[out])
+
+x_new=np.array(x) 
+y_new=np.array(y)
+#reshape input and output for the model
+x_new = np.reshape(x_new,(len(x_new),timesteps,1))
+y_new = np.reshape(y_new,(-1,1))
+#split the input and value into training and testing sets
+#80% for training and 20% for testing sets
+x_train,x_test,y_train,y_test = train_test_split(x_new,y_new,test_size=0.2,random_state=42)
