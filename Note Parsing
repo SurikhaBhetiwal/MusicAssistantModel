@@ -1,0 +1,16 @@
+def read_files(input_file):
+  notes=[]
+  notes_to_parse=None
+  midi_file=converter.parse(input_file)
+  instr=instrument.partitionByInstrument(midi_file)
+
+  for part in instr.parts:
+    if 'Piano' in str(part):
+      notes_to_parse=part.recurse()
+  for element in notes_to_parse:
+        if type(element)==note.Note:
+          notes.append(str(element.pitch))
+        elif type(element)==chord.Chord:
+          notes.append('.'.join(str(n) for n in element.normalOrder))
+
+  return notes
