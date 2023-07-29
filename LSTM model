@@ -1,0 +1,13 @@
+#create the model
+model = Sequential()
+#create two stacked LSTM layer with the latent dimension of 256
+model.add(LSTM(256,return_sequences=True,input_shape=(x_new.shape[1],x_new.shape[2])))
+model.add(Dropout(0.5))
+model.add(LSTM(256))
+model.add(Dropout(0.5))
+model.add(Dense(256,activation='relu'))
+
+#fully connected layer for the output with softmax activation
+model.add(Dense(len(note2ind),activation='softmax'))
+
+model.summary()
